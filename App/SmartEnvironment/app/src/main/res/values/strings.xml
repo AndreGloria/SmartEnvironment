@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">SmartEnvironment</string>
     <string name="action_settings">Settings</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string-array name="side_bar_option">
+        <item>Monitor</item>
+        <item>Control</item>
+        <item>Profile</item>
+        <item>About</item>
+        <item>Log out</item>
+    </string-array>
 </resources>
