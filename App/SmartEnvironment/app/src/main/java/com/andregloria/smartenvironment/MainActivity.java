@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        //Sidebar menu
         toolBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -53,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         mDrawerList.setAdapter(new ArrayAdapter<>(getApplicationContext(), R.layout.drawer_list_item, drawerOptions));
         mDrawerList.setOnItemClickListener(new DrawerItemListener(this, mDrawerLayout));
-
-
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         mDrawerLayout.addDrawerListener(mDrawerToggle);
-
+        //Sidebar menu end
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
