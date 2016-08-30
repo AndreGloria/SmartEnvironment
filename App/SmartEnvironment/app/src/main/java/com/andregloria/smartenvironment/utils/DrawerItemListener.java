@@ -1,4 +1,4 @@
-package com.andregloria.smartenvironment;
+package com.andregloria.smartenvironment.utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.andregloria.smartenvironment.MainActivity;
 
 public class DrawerItemListener implements ListView.OnItemClickListener{
 

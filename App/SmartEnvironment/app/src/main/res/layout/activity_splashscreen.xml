@@ -6,11 +6,10 @@
 
     <ImageView
         android:id="@+id/imgLogo"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:layout_marginTop="55dp" />
 
     <ImageView
@@ -19,14 +18,15 @@
         android:id="@+id/imgIsta"
         android:src="@drawable/ista"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/imgIT" />
+        android:layout_toStartOf="@+id/imgIT"
+        android:layout_alignTop="@+id/imgIT" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imgIT"
         android:src="@drawable/it"
-        android:layout_alignTop="@+id/imgIsta"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 
 
