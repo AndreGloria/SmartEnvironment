@@ -13,7 +13,21 @@
     tools:showIn="@layout/activity_main">
 
     <TextView
+        android:id="@+id/tv_Monitor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:textSize="10pt"
+        android:text="Monitor"
+        android:layout_gravity="center_horizontal"/>
+
+    <GridView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/grdSensors"
+        android:layout_below="@+id/tv_Monitor"
+        tools:listitem="@layout/fragment_grid_sensor_item"
+        android:numColumns="4"
+        android:visibility="gone">
+
+    </GridView>
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.andregloria.smartenvironment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,15 +14,27 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ListView;
 
+import com.andregloria.smartenvironment.utils.CheckConnection;
+import com.andregloria.smartenvironment.utils.CurrentSensors;
 import com.andregloria.smartenvironment.utils.DrawerItemListener;
+import com.andregloria.smartenvironment.view.Sensor;
+import com.andregloria.smartenvironment.view.SensorAdapterGrid;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     protected ListView mDrawerList;
+    protected GridView grdSensors;
+    protected SensorAdapterGrid adapterGrid;
+    private ArrayList<Sensor> lcSensors;
+    private String user;
 
     Toolbar toolBar;
     String[] drawerOptions;
@@ -43,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPrefs = getSharedPreferences("login", Context.MODE_PRIVATE);
+        if(sharedPrefs.contains("username")){
+            //new TestLogin(LoginActivity.this, sharedPrefs.getString("username",""), sharedPrefs.getString("password","")).execute();
+            user = sharedPrefs.getString("username","");
+        }
 
         //Sidebar menu
         toolBar = (Toolbar) findViewById(R.id.toolbar);
@@ -76,6 +96,13 @@ public class MainActivity extends AppCompatActivity {
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         //Sidebar menu end
 
+        //Grid start
+        grdSensors = (GridView) findViewById(R.id.grdSensors);
+
+        addToGridView();
+
+        //
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -107,5 +134,20 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void addToGridView(){
+        if(lcSensors ==null) {
+            lcSensors= new ArrayList<Sensor>();
+            if (new CheckConnection(MainActivity.this).isConnected()) {
+                new CurrentSensors(lcSensors, user, this).execute();
+            }
+        }
+
+        adapterGrid = new SensorAdapterGrid(MainActivity.this,lcSensors);
+        grdSensors.setAdapter(adapterGrid);
+
+        mDrawerList.setAdapter(new ArrayAdapter<>(getApplicationContext(), R.layout.drawer_list_item, drawerOptions));
+
     }
 }
