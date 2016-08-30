@@ -28,7 +28,9 @@
         tools:listitem="@layout/fragment_grid_sensor_item"
         android:numColumns="2"
         android:verticalSpacing="10dp"
-        android:horizontalSpacing="10dp">
+        android:horizontalSpacing="10dp"
+        android:layout_alignParentStart="true">
 
     </GridView>
+
 </RelativeLayout>

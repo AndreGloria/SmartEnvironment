@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:backgroundTint="#000000"
+    android:baselineAligned="false"
+    tools:context=".DetailsActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.60"
+            android:backgroundTint="#000000">
+            <ImageView
+                android:id="@+id/iv_sensorImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="100dp"
+                android:minHeight="200dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:scaleType="fitXY"
+                android:layout_alignParentLeft="true"
+                android:src="@mipmap/ic_launcher"/>
+
+            <TextView
+                android:id="@+id/tv_sensorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12pt"
+                android:layout_toRightOf="@id/iv_sensorImg"
+                android:text="Humidade"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_movieReleaseDate"
+                android:layout_below="@+id/tv_sensorName"
+                android:layout_toEndOf="@+id/iv_sensorImg"
+                android:text="hum1"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:id="@+id/tv_movieDirector"
+                android:layout_below="@id/tv_movieReleaseDate"
+                android:layout_toRightOf="@id/iv_sensorImg"
+                android:text="Current value:"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="141dp"></LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="384dp"
+            android:layout_height="172dp"
+            android:background="@color/colorPrimary"></LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
