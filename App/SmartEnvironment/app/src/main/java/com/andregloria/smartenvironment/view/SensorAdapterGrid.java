@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.andregloria.smartenvironment.R;
 //import com.andregloria.smartenvironment.utils.DownloadImageTask;
@@ -23,6 +24,7 @@ public class SensorAdapterGrid extends ArrayAdapter {
         mInflater = LayoutInflater.from(context);
         this.context=context;
         this.sensorList =movieList;
+        System.out.println(sensorList.size());
     }
 
     @Override
@@ -46,25 +48,33 @@ public class SensorAdapterGrid extends ArrayAdapter {
         if (convertView == null || convertView.getTag() == null) {
             holder = new ViewHolder();
             convertView = mInflater.inflate(R.layout.fragment_grid_sensor_item, parent, false);
-            holder.cover = (ImageView) convertView.findViewById(R.id.iv_grid_MovieCover);
+
+            holder.name = (TextView) convertView.findViewById(R.id.etNome);
+            holder.value = (TextView) convertView.findViewById(R.id.etValue);
+            holder.cover = (ImageView) convertView.findViewById(R.id.iv_grid_sensorimg);
+
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
         Sensor sensor = sensorList.get(position);
+        holder.name.setText(sensor.getSensorName());
+        holder.value.setText(sensor.getValue());
 
         if(sensor.getImageCover()==null) {
             //new DownloadImageTask(holder.cover,sensor).execute(sensor.getCover());
         }
         else {
-            holder.cover.setImageBitmap(sensor.getImageCover());
+            //holder.cover.setImageBitmap(sensor.getImageCover());
         }
         return convertView;
     }
 
     private static class ViewHolder {
         ImageView cover;
+        TextView name;
+        TextView value;
     }
 
     public List<Sensor> getSensorList() {

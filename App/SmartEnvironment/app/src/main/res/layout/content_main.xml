@@ -26,8 +26,9 @@
         android:id="@+id/grdSensors"
         android:layout_below="@+id/tv_Monitor"
         tools:listitem="@layout/fragment_grid_sensor_item"
-        android:numColumns="4"
-        android:visibility="gone">
+        android:numColumns="2"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp">
 
     </GridView>
 </RelativeLayout>

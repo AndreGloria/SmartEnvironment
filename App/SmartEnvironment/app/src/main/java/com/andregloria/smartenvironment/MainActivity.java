@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -104,14 +105,14 @@ public class MainActivity extends AppCompatActivity {
         //
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
-        });
+        });*/
     }
 
     @Override
@@ -137,8 +138,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addToGridView(){
-        if(lcSensors ==null) {
-            lcSensors= new ArrayList<Sensor>();
+        if(lcSensors == null) {
+            lcSensors = new ArrayList<Sensor>();
             if (new CheckConnection(MainActivity.this).isConnected()) {
                 new CurrentSensors(lcSensors, user, this).execute();
             }
@@ -146,8 +147,10 @@ public class MainActivity extends AppCompatActivity {
 
         adapterGrid = new SensorAdapterGrid(MainActivity.this,lcSensors);
         grdSensors.setAdapter(adapterGrid);
+        Log.i("Test", "Passou");
+    }
 
-        mDrawerList.setAdapter(new ArrayAdapter<>(getApplicationContext(), R.layout.drawer_list_item, drawerOptions));
-
+    public void notifyAdapterOfDataChanged(){
+        adapterGrid.notifyDataSetChanged();
     }
 }
