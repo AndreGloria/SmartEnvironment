@@ -12,7 +12,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andregloria.smartenvironment.ControlActivity;
 import com.andregloria.smartenvironment.MainActivity;
 
 public class DrawerItemListener implements ListView.OnItemClickListener{
@@ -28,11 +27,9 @@ public class DrawerItemListener implements ListView.OnItemClickListener{
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if(position==0) {
-            Intent i = new Intent(activity.getApplicationContext(), MainActivity.class);
-            activity.startActivity(i);
+
         }else if (position==1){
-            Intent i = new Intent(activity.getApplicationContext(), ControlActivity.class);
-            activity.startActivity(i);
+
 
         }else if(position==2){
 

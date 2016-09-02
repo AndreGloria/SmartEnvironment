@@ -1,14 +1,11 @@
 package com.andregloria.smartenvironment.utils;
 
-import android.app.Activity;
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 
-import com.andregloria.smartenvironment.ControlActivity;
-import com.andregloria.smartenvironment.LoginActivity;
-import com.andregloria.smartenvironment.MainActivity;
+import com.andregloria.smartenvironment.ControlTab;
+import com.andregloria.smartenvironment.MonitorTab;
 import com.andregloria.smartenvironment.view.Sensor;
-import com.andregloria.smartenvironment.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +18,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by ANDRE on 30/08/16.
@@ -30,14 +26,20 @@ public class CurrentSensors  extends AsyncTask<Void, Void, Void> {
 
     private static final String LOGIN_URL = "http://smartenvironment.andregloria.com/api/getSensors.php";
     private List<Sensor> sensorsList;
-    private FragmentActivity mainActivity;
-    private ControlActivity controlActivity;
+    private MonitorTab monitor;
+    private ControlTab control;
     private String user;
+    private boolean isMonitor;
 
-    public CurrentSensors(List<Sensor> movieAdapter, String user, FragmentActivity mainActivity){
+    public CurrentSensors(List<Sensor> movieAdapter, String user, Fragment fragment, boolean isMonitor){
         this.sensorsList =movieAdapter;
-        this.mainActivity= mainActivity;
+        if(isMonitor){
+            this.monitor = (MonitorTab) fragment;
+        } else {
+            this.control = (ControlTab) fragment;
+        }
         this.user = user;
+        this.isMonitor = isMonitor;
     }
 
 
@@ -97,7 +99,12 @@ public class CurrentSensors  extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        //mainActivity.notifyAdapterOfDataChanged();
+        if(isMonitor){
+            monitor.notifyAdapterOfDataChanged();
+        } else {
+            control.notifyAdapterOfDataChanged();
+        }
+
     }
 
 }

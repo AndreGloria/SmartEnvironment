@@ -26,7 +26,6 @@ public class SliderAdapterGrid extends ArrayAdapter {
         mInflater = LayoutInflater.from(context);
         this.context=context;
         this.sensorList =movieList;
-        System.out.println(sensorList.size());
     }
 
     @Override
@@ -49,7 +48,7 @@ public class SliderAdapterGrid extends ArrayAdapter {
         ViewHolder holder;
         if (convertView == null || convertView.getTag() == null) {
             holder = new ViewHolder();
-            convertView = mInflater.inflate(R.layout.fragment_grid_sensor_item, parent, false);
+            convertView = mInflater.inflate(R.layout.fragment_slider_item, parent, false);
 
             holder.name = (TextView) convertView.findViewById(R.id.etSliderID);
             holder.value = (TextView) convertView.findViewById(R.id.etSliderValue);

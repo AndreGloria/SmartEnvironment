@@ -52,7 +52,7 @@ public class MonitorTab extends Fragment {
         if(lcSensors == null) {
             lcSensors = new ArrayList<Sensor>();
             if (new CheckConnection(this.getActivity()).isConnected()) {
-                new CurrentSensors(lcSensors, user, this.getActivity()).execute();
+                new CurrentSensors(lcSensors, user, this, true).execute();
             }
         }
 

@@ -27,4 +27,5 @@
         <item>About</item>
         <item>Log out</item>
     </string-array>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

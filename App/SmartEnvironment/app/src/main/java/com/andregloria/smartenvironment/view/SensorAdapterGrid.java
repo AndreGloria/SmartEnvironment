@@ -24,7 +24,6 @@ public class SensorAdapterGrid extends ArrayAdapter {
         mInflater = LayoutInflater.from(context);
         this.context=context;
         this.sensorList =movieList;
-        System.out.println(sensorList.size());
     }
 
     @Override
