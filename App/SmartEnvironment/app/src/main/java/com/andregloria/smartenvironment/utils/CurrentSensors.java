@@ -1,7 +1,10 @@
 package com.andregloria.smartenvironment.utils;
 
+import android.app.Activity;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentActivity;
 
+import com.andregloria.smartenvironment.ControlActivity;
 import com.andregloria.smartenvironment.LoginActivity;
 import com.andregloria.smartenvironment.MainActivity;
 import com.andregloria.smartenvironment.view.Sensor;
@@ -27,12 +30,13 @@ public class CurrentSensors  extends AsyncTask<Void, Void, Void> {
 
     private static final String LOGIN_URL = "http://smartenvironment.andregloria.com/api/getSensors.php";
     private List<Sensor> sensorsList;
-    private MainActivity mainActivity;
+    private FragmentActivity mainActivity;
+    private ControlActivity controlActivity;
     private String user;
 
-    public CurrentSensors(List<Sensor> movieAdapter, String user, MainActivity mainActivity){
+    public CurrentSensors(List<Sensor> movieAdapter, String user, FragmentActivity mainActivity){
         this.sensorsList =movieAdapter;
-        this.mainActivity=mainActivity;
+        this.mainActivity= mainActivity;
         this.user = user;
     }
 
@@ -93,7 +97,7 @@ public class CurrentSensors  extends AsyncTask<Void, Void, Void> {
 
     @Override
     protected void onPostExecute(Void aVoid) {
-        mainActivity.notifyAdapterOfDataChanged();
+        //mainActivity.notifyAdapterOfDataChanged();
     }
 
 }

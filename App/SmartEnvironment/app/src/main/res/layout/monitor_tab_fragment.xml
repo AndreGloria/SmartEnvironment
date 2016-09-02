@@ -8,17 +8,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.andregloria.smartenvironment.MonitorActivity"
-    tools:showIn="@layout/monitor_tab_fragment">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
+    <!--<TextView
         android:id="@+id/tv_Monitor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="10pt"
         android:text="Monitor"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_gravity="center_horizontal"/>-->
 
     <GridView
         android:layout_width="wrap_content"

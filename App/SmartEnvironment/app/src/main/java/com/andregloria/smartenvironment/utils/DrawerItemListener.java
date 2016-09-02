@@ -1,5 +1,6 @@
 package com.andregloria.smartenvironment.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,14 +12,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andregloria.smartenvironment.ControlActivity;
 import com.andregloria.smartenvironment.MainActivity;
 
 public class DrawerItemListener implements ListView.OnItemClickListener{
 
-    MainActivity activity;
+    Activity activity;
     DrawerLayout mDrawerLayout;
 
-    public DrawerItemListener(MainActivity activity, DrawerLayout mDrawerLayout) {
+    public DrawerItemListener(Activity activity, DrawerLayout mDrawerLayout) {
         this.activity = activity;
         this.mDrawerLayout=mDrawerLayout;
     }
@@ -26,8 +28,11 @@ public class DrawerItemListener implements ListView.OnItemClickListener{
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if(position==0) {
-
+            Intent i = new Intent(activity.getApplicationContext(), MainActivity.class);
+            activity.startActivity(i);
         }else if (position==1){
+            Intent i = new Intent(activity.getApplicationContext(), ControlActivity.class);
+            activity.startActivity(i);
 
         }else if(position==2){
 

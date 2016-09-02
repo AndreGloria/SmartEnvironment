@@ -1,45 +1,30 @@
 package com.andregloria.smartenvironment;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ListView;
-
-import com.andregloria.smartenvironment.utils.CheckConnection;
-import com.andregloria.smartenvironment.utils.CurrentSensors;
 import com.andregloria.smartenvironment.utils.DrawerItemListener;
-import com.andregloria.smartenvironment.view.Sensor;
-import com.andregloria.smartenvironment.view.SensorAdapterGrid;
+import com.andregloria.smartenvironment.view.PagerAdapter;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     protected ListView mDrawerList;
-    protected GridView grdSensors;
-    protected SensorAdapterGrid adapterGrid;
-    private ArrayList<Sensor> lcSensors;
-    private String user;
 
     Toolbar toolBar;
     String[] drawerOptions;
-
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -59,11 +44,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SharedPreferences sharedPrefs = getSharedPreferences("login", Context.MODE_PRIVATE);
-        if(sharedPrefs.contains("username")){
-            //new TestLogin(LoginActivity.this, sharedPrefs.getString("username",""), sharedPrefs.getString("password","")).execute();
-            user = sharedPrefs.getString("username","");
-        }
+        //tab start
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText("Monitor"));
+        tabLayout.addTab(tabLayout.newTab().setText("Control"));
+        //tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        final PagerAdapter adapter = new PagerAdapter
+                (getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        //tab end
 
         //Sidebar menu
         toolBar = (Toolbar) findViewById(R.id.toolbar);
@@ -96,61 +105,21 @@ public class MainActivity extends AppCompatActivity {
         };
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         //Sidebar menu end
-
-        //Grid start
-        grdSensors = (GridView) findViewById(R.id.grdSensors);
-
-        addToGridView();
-
-        //
-
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void addToGridView(){
-        if(lcSensors == null) {
-            lcSensors = new ArrayList<Sensor>();
-            if (new CheckConnection(MainActivity.this).isConnected()) {
-                new CurrentSensors(lcSensors, user, this).execute();
-            }
-        }
-
-        adapterGrid = new SensorAdapterGrid(MainActivity.this,lcSensors);
-        grdSensors.setAdapter(adapterGrid);
-        Log.i("Test", "Passou");
-    }
-
-    public void notifyAdapterOfDataChanged(){
-        adapterGrid.notifyDataSetChanged();
     }
 }
