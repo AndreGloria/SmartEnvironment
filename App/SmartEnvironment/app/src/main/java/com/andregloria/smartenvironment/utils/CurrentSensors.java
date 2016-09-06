@@ -3,7 +3,7 @@ package com.andregloria.smartenvironment.utils;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 
-import com.andregloria.smartenvironment.ControlTab;
+import com.andregloria.smartenvironment.ActuatorsTab;
 import com.andregloria.smartenvironment.MonitorTab;
 import com.andregloria.smartenvironment.view.Sensor;
 
@@ -27,7 +27,7 @@ public class CurrentSensors  extends AsyncTask<Void, Void, Void> {
     private static final String LOGIN_URL = "http://smartenvironment.andregloria.com/api/getSensors.php";
     private List<Sensor> sensorsList;
     private MonitorTab monitor;
-    private ControlTab control;
+    private ActuatorsTab control;
     private String user;
     private boolean isMonitor;
 
@@ -36,7 +36,7 @@ public class CurrentSensors  extends AsyncTask<Void, Void, Void> {
         if(isMonitor){
             this.monitor = (MonitorTab) fragment;
         } else {
-            this.control = (ControlTab) fragment;
+            this.control = (ActuatorsTab) fragment;
         }
         this.user = user;
         this.isMonitor = isMonitor;
@@ -75,9 +75,6 @@ public class CurrentSensors  extends AsyncTask<Void, Void, Void> {
             //result = result.substring(1,result.length()-1); // remove wrapping "[" and "]"
 
             JSONArray sensorObject = new JSONArray(result);
-            System.out.println(sensorObject.getJSONObject(0).getString("sensorName"));
-            System.out.println(sensorObject.getJSONObject(1).getString("sensorName"));
-            //String title = movieObject.getString("Title");
             for(int i = 0; i < sensorObject.length(); i++){
                 JSONObject sensor = sensorObject.getJSONObject(i);
                 sensorsList.add(new Sensor(i, sensor.getString("sensorName"), sensor.getString("sensorId"), sensor.getString("value")));

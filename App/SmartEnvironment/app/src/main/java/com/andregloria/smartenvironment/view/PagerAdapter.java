@@ -8,12 +8,17 @@ package com.andregloria.smartenvironment.view;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.util.Log;
+import android.widget.GridView;
 
-import com.andregloria.smartenvironment.ControlTab;
+import com.andregloria.smartenvironment.ActionsTab;
+import com.andregloria.smartenvironment.ActuatorsTab;
 import com.andregloria.smartenvironment.MonitorTab;
+import com.andregloria.smartenvironment.R;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
+    private GridView grdSensors;
 
     public PagerAdapter(FragmentManager fm, int NumOfTabs) {
         super(fm);
@@ -22,14 +27,18 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+        Log.i("Teste", "switch");
 
         switch (position) {
             case 0:
                 MonitorTab tab1 = new MonitorTab();
                 return tab1;
             case 1:
-                ControlTab tab2 = new ControlTab();
+                ActuatorsTab tab2 = new ActuatorsTab();
                 return tab2;
+            case 2:
+                ActionsTab tab3 = new ActionsTab();
+                return tab3;
             default:
                 return null;
         }

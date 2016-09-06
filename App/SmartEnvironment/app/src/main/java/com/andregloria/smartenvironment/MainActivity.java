@@ -8,13 +8,18 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.andregloria.smartenvironment.utils.DrawerItemListener;
 import com.andregloria.smartenvironment.view.PagerAdapter;
+
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
@@ -48,9 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
         //tab start
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Monitor"));
-        tabLayout.addTab(tabLayout.newTab().setText("Control"));
-        //tabLayout.addTab(tabLayout.newTab().setText("Tab 3"));
+        tabLayout.addTab(tabLayout.newTab().setText("Sensors"));
+        //tabLayout.addTab(tabLayout.newTab().setText("Actuators"));
+        //tabLayout.addTab(tabLayout.newTab().setText("Actions"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);

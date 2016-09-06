@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.support.v4.app.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ import com.andregloria.smartenvironment.view.SliderAdapterGrid;
 
 import java.util.ArrayList;
 
-public class ControlTab extends Fragment {
+public class ActuatorsTab extends Fragment {
 
     protected GridView sliderSensors;
     protected SliderAdapterGrid adapterGrid;
@@ -38,7 +37,7 @@ public class ControlTab extends Fragment {
             user = sharedPrefs.getString("username","");
         }
 
-        View rootView = inflater.inflate(R.layout.control_tab_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.actuators_tab_fragment, container, false);
 
         sliderSensors = (GridView) rootView.findViewById(R.id.sliderSensors);
 

@@ -5,7 +5,9 @@ package com.andregloria.smartenvironment;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Movie;
 import android.support.v4.app.Fragment;
 
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.andregloria.smartenvironment.utils.CheckConnection;
@@ -21,17 +24,23 @@ import com.andregloria.smartenvironment.view.Sensor;
 import com.andregloria.smartenvironment.view.SensorAdapterGrid;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
-public class MonitorTab extends Fragment {
+public class MonitorTab extends Fragment implements AdapterView.OnItemClickListener{
 
     protected GridView grdSensors;
     protected SensorAdapterGrid adapterGrid;
     private ArrayList<Sensor> lcSensors;
     private String user;
+    private View rootView;
+
+    protected static int DETAILS = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i("Monitor", "passou");
+
+        rootView = inflater.inflate(R.layout.monitor_tab_fragment, container, false);
 
         SharedPreferences sharedPrefs = this.getActivity().getSharedPreferences("login", Context.MODE_PRIVATE);
         if(sharedPrefs.contains("username")){
@@ -39,12 +48,6 @@ public class MonitorTab extends Fragment {
             user = sharedPrefs.getString("username","");
         }
 
-        View rootView = inflater.inflate(R.layout.monitor_tab_fragment, container, false);
-
-        //Grid start
-        grdSensors = (GridView) rootView.findViewById(R.id.grdSensors);
-
-        addToGridView();
         return rootView;
     }
 
@@ -63,5 +66,32 @@ public class MonitorTab extends Fragment {
 
     public void notifyAdapterOfDataChanged(){
         adapterGrid.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        //Grid start
+        grdSensors = (GridView) view.findViewById(R.id.grdSensors);
+
+        addToGridView();
+        grdSensors.bringToFront();
+
+        grdSensors.setOnItemClickListener(this);
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.i("Sensor", "s");
+        Context ctx = rootView.getContext().getApplicationContext();
+        Intent i = new Intent(ctx, DetailsActivity.class);
+
+        //Sensor s = (Sensor) lcSensors.getItemAtPosition(position);
+        Sensor s = (Sensor) lcSensors.get(position);
+        Log.i("Sensor", s.getSensorName());
+        i.putExtra("sensor", s);
+        startActivityForResult(i, DETAILS);
     }
 }

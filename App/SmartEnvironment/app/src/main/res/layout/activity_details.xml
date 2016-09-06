@@ -15,20 +15,23 @@
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.60"
+            android:layout_height="200dp"
             android:backgroundTint="#000000">
             <ImageView
                 android:id="@+id/iv_sensorImg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minWidth="100dp"
-                android:minHeight="200dp"
+                android:minHeight="100dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
-                android:src="@mipmap/ic_launcher"/>
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp" />
 
             <TextView
                 android:id="@+id/tv_sensorName"
@@ -36,7 +39,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="12pt"
                 android:layout_toRightOf="@id/iv_sensorImg"
-                android:text="Humidade"/>
+                android:text="Humidade"
+                android:paddingTop="35dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -57,18 +61,40 @@
                 android:text="Current value:"
                 />
 
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@id/iv_sensorImg"
+                android:layout_below="@id/tv_movieDirector"
+                android:paddingTop="10dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Button"
+                    android:id="@+id/button" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New Button"
+                    android:id="@+id/button2" />
+            </LinearLayout>
+
         </RelativeLayout>
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="141dp"></LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="125dp"></LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="384dp"
             android:layout_height="172dp"
             android:background="@color/colorPrimary"></LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>
