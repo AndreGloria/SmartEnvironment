@@ -115,6 +115,7 @@
                     android:background="#383838"/>
 
             </android.support.v4.widget.DrawerLayout>
+
         </RelativeLayout>
     </LinearLayout>
 

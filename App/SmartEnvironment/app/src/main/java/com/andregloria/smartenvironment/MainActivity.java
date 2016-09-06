@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         //tab start
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Sensors"));
-        //tabLayout.addTab(tabLayout.newTab().setText("Actuators"));
-        //tabLayout.addTab(tabLayout.newTab().setText("Actions"));
+        tabLayout.addTab(tabLayout.newTab().setText("Actuators"));
+        tabLayout.addTab(tabLayout.newTab().setText("Actions"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
@@ -92,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
 
         mDrawerList.setAdapter(new ArrayAdapter<>(getApplicationContext(), R.layout.drawer_list_item, drawerOptions));
         mDrawerList.setOnItemClickListener(new DrawerItemListener(this, mDrawerLayout));
+        //mDrawerLayout.setVisibility(View.GONE);
+        viewPager.bringToFront();
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,
@@ -101,13 +103,19 @@ public class MainActivity extends AppCompatActivity {
                 R.string.drawer_close
         ) {
             public void onDrawerClosed(View view) {
-
+                Log.i("Menu", "close");
+                //mDrawerLayout.setVisibility(View.GONE);
+                viewPager.bringToFront();
                 invalidateOptionsMenu();
+
             }
 
             public void onDrawerOpened(View drawerView) {
-
+                Log.i("Menu", "open");
+                //mDrawerLayout.setVisibility(View.VISIBLE);
+                mDrawerLayout.bringToFront();
                 invalidateOptionsMenu();
+
             }
         };
         mDrawerLayout.addDrawerListener(mDrawerToggle);
