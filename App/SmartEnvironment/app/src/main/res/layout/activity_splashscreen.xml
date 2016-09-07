@@ -26,7 +26,7 @@
             android:scaleType="fitStart"
             android:layout_weight="1"
             android:src="@drawable/ista" />
-        <ImageView android:src="@drawable/ista"
+        <ImageView android:src="@drawable/it"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:scaleType="fitStart"
