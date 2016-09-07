@@ -30,8 +30,7 @@
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".DetailsActivity"
-            android:theme="@style/AppTheme"
-            >
+            android:theme="@style/DetailsTheme">
         </activity>
 
     </application>

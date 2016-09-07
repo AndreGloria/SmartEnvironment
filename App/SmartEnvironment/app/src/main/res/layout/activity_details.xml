@@ -9,6 +9,14 @@
     android:baselineAligned="false"
     tools:context=".DetailsActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar"
+        android:background="@color/colorPrimary">
+    </android.support.v7.widget.Toolbar>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,35 +36,37 @@
                 android:scaleType="fitXY"
                 android:layout_alignParentLeft="true"
                 android:src="@mipmap/ic_launcher"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="50dp"
                 android:layout_marginBottom="50dp" />
 
             <TextView
                 android:id="@+id/tv_sensorName"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="12pt"
                 android:layout_toRightOf="@id/iv_sensorImg"
                 android:text="Humidade"
-                android:paddingTop="35dp" />
+                android:paddingTop="35dp"
+                android:textAlignment="center"
+                android:singleLine="true" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_movieReleaseDate"
+                android:id="@+id/tv_sensorID"
                 android:layout_below="@+id/tv_sensorName"
                 android:layout_toEndOf="@+id/iv_sensorImg"
                 android:text="hum1"
-                />
+                android:textAlignment="center" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:id="@+id/tv_movieDirector"
-                android:layout_below="@id/tv_movieReleaseDate"
+                android:id="@+id/tv_sensorValue"
+                android:layout_below="@id/tv_sensorID"
                 android:layout_toRightOf="@id/iv_sensorImg"
                 android:text="Current value:"
                 />
@@ -66,7 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_toRightOf="@id/iv_sensorImg"
-                android:layout_below="@id/tv_movieDirector"
+                android:layout_below="@id/tv_sensorValue"
                 android:paddingTop="10dp">
 
                 <Button

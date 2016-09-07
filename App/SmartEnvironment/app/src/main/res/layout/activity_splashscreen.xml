@@ -10,24 +10,29 @@
         android:layout_height="wrap_content"
         android:src="@drawable/logo"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="55dp" />
+        android:layout_marginTop="55dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <LinearLayout android:orientation="horizontal"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imgIsta"
-        android:src="@drawable/ista"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/imgIT"
-        android:layout_alignTop="@+id/imgIT" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imgIT"
-        android:src="@drawable/it"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
+        <ImageView android:id="@+id/numberDays"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitStart"
+            android:layout_weight="1"
+            android:src="@drawable/ista" />
+        <ImageView android:src="@drawable/ista"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:scaleType="fitStart"
+            android:layout_weight="1"
+            android:id="@+id/daysText"></ImageView>
+    </LinearLayout>
 
 
 </RelativeLayout>
